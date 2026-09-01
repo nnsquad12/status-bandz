@@ -1,29 +1,35 @@
 # Status Bandz — Shopify site
 
-Store: **ay41nf-0t.myshopify.com** · Theme: **Status Bandz** (id 190424645930)
+Store: **ay41nf-0t.myshopify.com**
+
+The Shopify theme lives at the root of this repo (`layout/`, `sections/`, `templates/`, …) so it can be connected to Shopify via GitHub.
 
 ## Edit the site (easiest — no code)
-Open the theme editor in your browser:
-https://ay41nf-0t.myshopify.com/admin/themes/190424645930/editor
+Open your theme editor: **Shopify admin → Online Store → Themes → Customize**
 
 Change text, images, sections, and colors by clicking on them. Hit **Save** when done.
+If the theme is connected to GitHub, your saves sync back to this repo automatically.
 
 ## Edit the code from this computer
-The theme files live in the `theme/` folder here. After editing them, push your changes:
+Edit the files in this folder, then either:
+
+**A) Push to GitHub** (if the theme is connected to GitHub in Shopify, it updates automatically):
 
 ```bash
-npx shopify theme push --path theme --store ay41nf-0t.myshopify.com --theme 190424645930
+git add -A && git commit -m "update site" && git push
 ```
 
-Or live-preview while you edit (auto-reloads on save):
+**B) Push straight to Shopify with the CLI:**
 
 ```bash
-npx shopify theme dev --path theme --store ay41nf-0t.myshopify.com
+npx shopify theme push --store ay41nf-0t.myshopify.com
 ```
 
-## What's in here
-- `theme/` — the Shopify theme (this is the live site's code)
-- `nextjs-source/` — the old Next.js version of the site (kept for reference)
+Live-preview while editing (auto-reloads on save):
 
-## Preview link
-https://ay41nf-0t.myshopify.com?preview_theme_id=190424645930
+```bash
+npx shopify theme dev --store ay41nf-0t.myshopify.com
+```
+
+## Old Next.js version
+The original Next.js site is kept on the `archive/original-files` branch (and in the untracked `nextjs-source/` folder on this computer).
