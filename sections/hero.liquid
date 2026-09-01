@@ -1,7 +1,18 @@
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-inner{% if section.settings.bg_image %} has-bg{% if section.settings.text_style == 'light' %} text-light{% endif %}{% endif %}">
+    {% if section.settings.bg_image %}
+      <img
+        class="hero-bg"
+        src="{{ section.settings.bg_image | image_url: width: 2400 }}"
+        srcset="{{ section.settings.bg_image | image_url: width: 800 }} 800w, {{ section.settings.bg_image | image_url: width: 1600 }} 1600w, {{ section.settings.bg_image | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ section.settings.bg_image.alt | escape }}"
+        width="{{ section.settings.bg_image.width }}"
+        height="{{ section.settings.bg_image.height }}"
+        loading="eager">
+      <div class="hero-overlay" style="opacity:{{ section.settings.overlay | divided_by: 100.0 }}"></div>
+    {% endif %}
     <p class="kicker"><span class="dropnum">{{ section.settings.drop_label }}</span> — {{ section.settings.drop_status }}</p>
-    <div class="band"><span class="plate">{{ section.settings.plate_word }}</span></div>
     <h1 class="display">{{ section.settings.headline }}</h1>
     <div class="cta">
       <a class="btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_text }}</a>
@@ -15,9 +26,21 @@
     { "type": "text", "id": "drop_label", "label": "Drop label", "default": "Drop 001" },
     { "type": "text", "id": "drop_status", "label": "Drop status", "default": "Live now" },
     { "type": "text", "id": "headline", "label": "Headline", "default": "Say it without saying it" },
-    { "type": "text", "id": "plate_word", "label": "Word on the band", "default": "Single" },
     { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop the drop" },
-    { "type": "url", "id": "cta_link", "label": "Button link" }
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+    { "type": "header", "content": "Background image" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "range", "id": "overlay", "label": "Darken image", "min": 0, "max": 80, "step": 10, "unit": "%", "default": 20 },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text color on image",
+      "options": [
+        { "value": "dark", "label": "Dark text" },
+        { "value": "light", "label": "White text" }
+      ],
+      "default": "light"
+    }
   ],
   "presets": [{ "name": "Hero" }]
 }
