@@ -6,6 +6,9 @@
     </div>
     <div class="product-grid">
       {% assign col = collections[section.settings.collection] %}
+      {% if col == blank or col.products.size == 0 %}
+        {% assign col = collections.all %}
+      {% endif %}
       {% if col != blank and col.products.size > 0 %}
         {% for product in col.products limit: section.settings.limit %}
           {% render 'product-card', product: product %}
