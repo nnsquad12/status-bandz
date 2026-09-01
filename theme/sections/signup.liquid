@@ -1,0 +1,22 @@
+<section class="signup">
+  <div class="wrap">
+    <h2 class="display">{{ section.settings.title }}</h2>
+    <p class="small">{{ section.settings.subtitle }}</p>
+    {% form 'customer' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" placeholder="Email" required aria-label="Email">
+      <button type="submit" class="btn">{{ section.settings.button }}</button>
+    {% endform %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Signup",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "The list gets in first" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Early access — 24 hours before public" },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get on the list" }
+  ],
+  "presets": [{ "name": "Signup" }]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<div class="wrap">
+  <div class="cart-page">
+    <h1 class="display">Cart</h1>
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post">
+        {% for item in cart.items %}
+          <div class="cart-row">
+            <div class="item">{{ item.product.title }}{% unless item.product.has_only_default_variant %} — {{ item.variant.title }}{% endunless %}</div>
+            <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity">
+            <div>{{ item.final_line_price | money }}</div>
+          </div>
+        {% endfor %}
+        <div class="cart-total">
+          <span>Total</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <button type="submit" name="update" class="btn ghost">Update</button>
+        <button type="submit" name="checkout" class="btn">Check out</button>
+      </form>
+    {% else %}
+      <div class="cart-empty">
+        <p>Nothing here yet.</p>
+        <p style="margin-top:24px"><a class="btn" href="{{ routes.all_products_collection_url }}">Shop the drop</a></p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

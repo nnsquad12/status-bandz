@@ -1,0 +1,74 @@
+<section class="registry">
+  <div class="wrap">
+    <h1 class="display">{{ section.settings.title }}</h1>
+    <p class="intro">{{ section.settings.intro }}</p>
+
+    <div class="lookup">
+      <label for="serial-input">Check a serial</label>
+      <div class="lookup-row">
+        <input id="serial-input" type="text" placeholder="SB-000" autocomplete="off" autocapitalize="characters">
+        <button type="button" class="btn" id="serial-check">Check</button>
+      </div>
+      <p id="lookup-result" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="ledger" id="ledger">
+      {% for block in section.blocks %}
+        <div class="ledger-row" data-serial="{{ block.settings.serial | upcase | strip }}" data-holder="{{ block.settings.holder | escape }}" {{ block.shopify_attributes }}>
+          <span class="serial">{{ block.settings.serial }}</span>
+          <span class="holder">{{ block.settings.holder }}</span>
+          <span class="mark">Verified</span>
+        </div>
+      {% endfor %}
+    </div>
+    {% if section.blocks.size == 0 %}
+      <p class="small center">Registry opens with Drop 001.</p>
+    {% endif %}
+  </div>
+</section>
+<script>
+(function(){
+  var input = document.getElementById('serial-input');
+  var btn = document.getElementById('serial-check');
+  var out = document.getElementById('lookup-result');
+  var rows = document.querySelectorAll('#ledger .ledger-row');
+  function check(){
+    var q = (input.value || '').trim().toUpperCase();
+    if(!q){ out.textContent = 'Enter a serial to check.'; out.className = ''; return; }
+    var hit = null;
+    rows.forEach(function(r){ if(r.getAttribute('data-serial') === q) hit = r; });
+    rows.forEach(function(r){ r.classList.remove('hit'); });
+    if(hit){
+      out.textContent = 'Verified — ' + hit.getAttribute('data-holder');
+      out.className = 'ok';
+      hit.classList.add('hit');
+      hit.scrollIntoView({behavior:'smooth', block:'center'});
+    } else {
+      out.textContent = 'Not found. This serial is not a verified band.';
+      out.className = 'no';
+    }
+  }
+  if(btn){ btn.addEventListener('click', check); }
+  if(input){ input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); check(); } }); }
+})();
+</script>
+{% schema %}
+{
+  "name": "Verified registry",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Verified holders" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Every Millionaire band carries an engraved serial. Every serial on this page passed verification before it shipped. If the serial isn't here, the band isn't real." }
+  ],
+  "blocks": [
+    {
+      "type": "entry",
+      "name": "Registry entry",
+      "settings": [
+        { "type": "text", "id": "serial", "label": "Serial", "default": "SB-001" },
+        { "type": "text", "id": "holder", "label": "Holder (name, @handle, or Holder No.)", "default": "Holder No. 001" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Verified registry" }]
+}
+{% endschema %}

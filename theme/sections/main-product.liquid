@@ -1,0 +1,48 @@
+{% assign is_verified = false %}
+{% if product.tags contains 'verified-tier' %}{% assign is_verified = true %}{% endif %}
+<div class="wrap">
+  <div class="product-page">
+    <div class="product-media">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="1200" height="1200">
+      {% else %}
+        <div style="aspect-ratio:1;display:flex;align-items:center;justify-content:center">
+          <div class="band" style="max-width:80%"><span class="plate">{{ product.title | truncate: 12, '' }}</span></div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="product-info">
+      <h1 class="display">{{ product.title }}</h1>
+      <div class="price">{{ product.price | money }}</div>
+      {% if is_verified %}
+        <div class="verify-note">
+          <strong>Verification required</strong>
+          <p>Your order is a reservation. This band ships only after your status is verified. Once verified, your serial is added to the public registry — permanently yours, impossible to fake.</p>
+        </div>
+      {% endif %}
+      <div class="desc rte">{{ product.description }}</div>
+      {% form 'product', product %}
+        {% unless product.has_only_default_variant %}
+          <label for="variant-select">Option</label>
+          <select id="variant-select" name="id">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                {{ variant.title }} {% unless variant.available %}— Sold out{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+        {% if product.available %}
+          <button type="submit" class="btn full">{% if is_verified %}Reserve — verify to receive{% else %}Add to cart{% endif %}</button>
+        {% else %}
+          <button type="button" class="btn full" disabled>Sold out</button>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

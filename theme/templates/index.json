@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "grid": {
+      "type": "drop-grid",
+      "settings": {}
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "c1": {
+          "type": "col",
+          "settings": {
+            "heading": "Pick your status",
+            "body": "Single. Taken. Millionaire. Wear the one that's true."
+          }
+        },
+        "c2": {
+          "type": "col",
+          "settings": {
+            "heading": "Limited drops",
+            "body": "Every run is numbered and capped. When a drop sells out, that's it."
+          }
+        },
+        "c3": {
+          "type": "col",
+          "settings": {
+            "heading": "Verified tiers",
+            "body": "Millionaire bands ship only after verification. Every serial is listed in the public registry — so nobody can fake it."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {}
+    },
+    "signup": {
+      "type": "signup",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "grid",
+    "how",
+    "signup"
+  ]
+}

@@ -1,0 +1,8 @@
+<div class="wrap"><div class="rte-page">
+  <h1 class="display">{{ article.title }}</h1>
+  <p class="small" style="margin-bottom:32px">{{ article.published_at | date: '%b %d, %Y' }}</p>
+  <div class="rte">{{ article.content }}</div>
+</div></div>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

@@ -1,0 +1,18 @@
+<section class="grid-section" style="border-bottom:0">
+  <div class="wrap">
+    <div class="grid-head">
+      <h1 class="display">{{ collection.title }}</h1>
+      <span class="small">{{ collection.products_count }} pieces</span>
+    </div>
+    <div class="product-grid">
+      {% paginate collection.products by 12 %}
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

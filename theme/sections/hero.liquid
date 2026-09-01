@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero-inner">
+    <p class="kicker"><span class="dropnum">{{ section.settings.drop_label }}</span> — {{ section.settings.drop_status }}</p>
+    <div class="band"><span class="plate">{{ section.settings.plate_word }}</span></div>
+    <h1 class="display">{{ section.settings.headline }}</h1>
+    <div class="cta">
+      <a class="btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_text }}</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "drop_label", "label": "Drop label", "default": "Drop 001" },
+    { "type": "text", "id": "drop_status", "label": "Drop status", "default": "Live now" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Say it without saying it" },
+    { "type": "text", "id": "plate_word", "label": "Word on the band", "default": "Single" },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop the drop" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

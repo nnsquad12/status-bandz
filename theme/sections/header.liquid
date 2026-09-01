@@ -1,0 +1,11 @@
+<header class="site-header">
+  <a class="wordmark" href="{{ routes.root_url }}">Status Bandz</a>
+  <nav class="nav">
+    <a href="{{ routes.all_products_collection_url }}">Shop</a>
+    <a href="/pages/verified">Verified</a>
+    <a class="cart-link" href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+  </nav>
+</header>
+{% schema %}
+{ "name": "Header", "settings": [] }
+{% endschema %}

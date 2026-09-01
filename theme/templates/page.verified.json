@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "verified-registry",
+      "blocks": {
+        "e1": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-001",
+            "holder": "Holder No. 001"
+          }
+        }
+      },
+      "block_order": [
+        "e1"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

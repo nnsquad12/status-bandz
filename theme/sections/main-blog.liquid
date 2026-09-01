@@ -1,0 +1,11 @@
+<div class="wrap"><div class="pad-section">
+  <h1 class="display">{{ blog.title }}</h1>
+  <div style="margin-top:40px">
+    {% for article in blog.articles %}
+      <p style="margin-bottom:16px"><a href="{{ article.url }}" style="font-weight:500">{{ article.title }}</a> <span class="small">{{ article.published_at | date: '%b %d, %Y' }}</span></p>
+    {% endfor %}
+  </div>
+</div></div>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}
