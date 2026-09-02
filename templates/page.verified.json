@@ -3,16 +3,208 @@
     "main": {
       "type": "verified-registry",
       "blocks": {
-        "e1": {
+        "slot1": {
           "type": "entry",
           "settings": {
             "serial": "SB-001",
-            "holder": "Holder No. 001"
+            "holder": ""
+          }
+        },
+        "slot2": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-002",
+            "holder": ""
+          }
+        },
+        "slot3": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-003",
+            "holder": ""
+          }
+        },
+        "slot4": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-004",
+            "holder": ""
+          }
+        },
+        "slot5": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-005",
+            "holder": ""
+          }
+        },
+        "slot6": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-006",
+            "holder": ""
+          }
+        },
+        "slot7": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-007",
+            "holder": ""
+          }
+        },
+        "slot8": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-008",
+            "holder": ""
+          }
+        },
+        "slot9": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-009",
+            "holder": ""
+          }
+        },
+        "slot10": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-010",
+            "holder": ""
+          }
+        },
+        "slot11": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-011",
+            "holder": ""
+          }
+        },
+        "slot12": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-012",
+            "holder": ""
+          }
+        },
+        "slot13": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-013",
+            "holder": ""
+          }
+        },
+        "slot14": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-014",
+            "holder": ""
+          }
+        },
+        "slot15": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-015",
+            "holder": ""
+          }
+        },
+        "slot16": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-016",
+            "holder": ""
+          }
+        },
+        "slot17": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-017",
+            "holder": ""
+          }
+        },
+        "slot18": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-018",
+            "holder": ""
+          }
+        },
+        "slot19": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-019",
+            "holder": ""
+          }
+        },
+        "slot20": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-020",
+            "holder": ""
+          }
+        },
+        "slot21": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-021",
+            "holder": ""
+          }
+        },
+        "slot22": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-022",
+            "holder": ""
+          }
+        },
+        "slot23": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-023",
+            "holder": ""
+          }
+        },
+        "slot24": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-024",
+            "holder": ""
+          }
+        },
+        "slot25": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-025",
+            "holder": ""
           }
         }
       },
       "block_order": [
-        "e1"
+        "slot1",
+        "slot2",
+        "slot3",
+        "slot4",
+        "slot5",
+        "slot6",
+        "slot7",
+        "slot8",
+        "slot9",
+        "slot10",
+        "slot11",
+        "slot12",
+        "slot13",
+        "slot14",
+        "slot15",
+        "slot16",
+        "slot17",
+        "slot18",
+        "slot19",
+        "slot20",
+        "slot21",
+        "slot22",
+        "slot23",
+        "slot24",
+        "slot25"
       ],
       "settings": {}
     }

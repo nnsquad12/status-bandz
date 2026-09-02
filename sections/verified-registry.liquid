@@ -13,43 +13,33 @@
     </div>
 
     <div class="ledger" id="ledger">
-      {% assign total = section.settings.total_slots | default: 25 %}
-      {% assign known_serials = '' %}
-      {% for i in (1..total) %}
-        {% assign padded = i | prepend: '000' | slice: -3, 3 %}
-        {% assign slot_serial = 'SB-' | append: padded %}
-        {% assign known_serials = known_serials | append: slot_serial | append: ',' %}
-        {% assign holder = '' %}
-        {% for block in section.blocks %}
-          {% assign bserial = block.settings.serial | upcase | strip %}
-          {% if bserial == slot_serial %}{% assign holder = block.settings.holder %}{% endif %}
-        {% endfor %}
-        {% if holder != blank %}
-          <div class="ledger-row" data-serial="{{ slot_serial }}" data-holder="{{ holder | escape }}" data-status="verified">
-            <span class="serial">{{ slot_serial }}</span>
-            <span class="holder">{{ holder }}</span>
-            <span class="mark">Verified</span>
-          </div>
-        {% else %}
-          <div class="ledger-row open" data-serial="{{ slot_serial }}" data-status="open">
-            <span class="serial">{{ slot_serial }}</span>
-            <span class="holder">{{ section.settings.open_text }}</span>
-            <span class="mark">Open</span>
-          </div>
-        {% endif %}
-      {% endfor %}
-      {% comment %} Entries whose serial falls outside the numbered slots still get listed {% endcomment %}
       {% for block in section.blocks %}
         {% assign bserial = block.settings.serial | upcase | strip %}
-        {% assign bkey = bserial | append: ',' %}
-        {% unless known_serials contains bkey %}
+        {% if block.settings.holder != blank %}
           <div class="ledger-row" data-serial="{{ bserial }}" data-holder="{{ block.settings.holder | escape }}" data-status="verified" {{ block.shopify_attributes }}>
             <span class="serial">{{ block.settings.serial }}</span>
             <span class="holder">{{ block.settings.holder }}</span>
             <span class="mark">Verified</span>
           </div>
-        {% endunless %}
+        {% else %}
+          <div class="ledger-row open" data-serial="{{ bserial }}" data-status="open" {{ block.shopify_attributes }}>
+            <span class="serial">{{ block.settings.serial }}</span>
+            <span class="holder">{{ section.settings.open_text }}</span>
+            <span class="mark">Open</span>
+          </div>
+        {% endif %}
       {% endfor %}
+      {% if section.blocks.size == 0 %}
+        {% assign total = section.settings.total_slots | default: 25 %}
+        {% for i in (1..total) %}
+          {% assign padded = i | prepend: '000' | slice: -3, 3 %}
+          <div class="ledger-row open" data-serial="SB-{{ padded }}" data-status="open">
+            <span class="serial">SB-{{ padded }}</span>
+            <span class="holder">{{ section.settings.open_text }}</span>
+            <span class="mark">Open</span>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
@@ -98,8 +88,8 @@
       "type": "entry",
       "name": "Registry entry",
       "settings": [
-        { "type": "text", "id": "serial", "label": "Serial", "default": "SB-001" },
-        { "type": "text", "id": "holder", "label": "Holder (name, @handle, or Holder No.)", "default": "Holder No. 001" }
+        { "type": "text", "id": "serial", "label": "Serial", "default": "SB-000" },
+        { "type": "text", "id": "holder", "label": "Holder name (leave empty to show slot as Open)" }
       ]
     }
   ],
