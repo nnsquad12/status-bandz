@@ -11,6 +11,9 @@
   <div class="meta">
     <div class="title">{{ product.title }}</div>
     <div class="price">{{ product.price | money }}</div>
+    {% if is_verified and exclusive_note != blank %}
+      <div class="excl">{{ exclusive_note }}</div>
+    {% endif %}
     {% if product.available == false %}
       <div class="flag soldout">Sold out</div>
     {% elsif is_verified %}

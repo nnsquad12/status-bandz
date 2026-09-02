@@ -37,6 +37,9 @@
     <div class="product-info">
       <h1 class="display">{{ product.title }}</h1>
       <div class="price">{{ product.price | money }}</div>
+      {% if is_verified and section.settings.exclusive_note != blank %}
+        <div class="exclusive-note">{{ section.settings.exclusive_note }}</div>
+      {% endif %}
       {% if is_verified %}
         <div class="verify-note">
           <strong>Verification required</strong>
@@ -87,5 +90,15 @@
   })();
 </script>
 {% schema %}
-{ "name": "Product", "settings": [] }
+{
+  "name": "Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "exclusive_note",
+      "label": "Exclusivity note (verified-tier products)",
+      "default": "Exclusive — 1 of 25 in the world"
+    }
+  ]
+}
 {% endschema %}
