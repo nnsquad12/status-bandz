@@ -43,10 +43,28 @@
       {% if is_verified %}
         <div class="verify-note">
           <strong>Verification required</strong>
-          <p>Your order is a reservation. This band ships only after your status is verified. Once verified, your serial is added to the public registry — permanently yours, impossible to fake.</p>
+          <p>This band can't be bought at checkout. Contact us below first — once your status is verified, we release your band and your serial is added to the public registry. Permanently yours, impossible to fake.</p>
         </div>
       {% endif %}
       <div class="desc rte">{{ product.description }}</div>
+      {% if is_verified %}
+        {% form 'contact', class: 'inquiry' %}
+          {% if form.posted_successfully? %}
+            <p class="form-note success">Request received. We'll be in touch to start verification.</p>
+          {% endif %}
+          {% if form.errors %}
+            <p class="form-note error">Something went wrong — check your email address and try again.</p>
+          {% endif %}
+          <input type="hidden" name="contact[product]" value="{{ product.title | escape }}">
+          <label for="inq-name">Name</label>
+          <input id="inq-name" type="text" name="contact[name]" required autocomplete="name">
+          <label for="inq-email">Email</label>
+          <input id="inq-email" type="email" name="contact[email]" required autocomplete="email">
+          <label for="inq-body">Message</label>
+          <textarea id="inq-body" name="contact[body]" rows="4" required placeholder="Tell us who you are."></textarea>
+          <button type="submit" class="btn full">Contact us to reserve</button>
+        {% endform %}
+      {% else %}
       {% form 'product', product %}
         {% unless product.has_only_default_variant %}
           <label for="variant-select">Option</label>
@@ -61,11 +79,12 @@
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         {% endunless %}
         {% if product.available %}
-          <button type="submit" class="btn full">{% if is_verified %}Reserve — verify to receive{% else %}Add to cart{% endif %}</button>
+          <button type="submit" class="btn full">Add to cart</button>
         {% else %}
           <button type="button" class="btn full" disabled>Sold out</button>
         {% endif %}
       {% endform %}
+      {% endif %}
     </div>
   </div>
 </div>

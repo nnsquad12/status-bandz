@@ -190,6 +190,13 @@ select{
   font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:0;background:var(--paper);margin-bottom:16px;
 }
 label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;display:block;margin-bottom:8px;color:var(--gray)}
+.inquiry input[type=text],.inquiry input[type=email],.inquiry textarea{
+  width:100%;border:1px solid var(--ink);padding:12px 14px;font-family:inherit;
+  font-size:12px;letter-spacing:.04em;border-radius:0;background:var(--paper);margin-bottom:16px;
+}
+.inquiry textarea{resize:vertical}
+.form-note{font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:14px;margin-bottom:20px;border:1px solid var(--ink)}
+.form-note.success{background:var(--ink);color:var(--paper)}
 
 /* registry */
 .registry{padding:80px 0 100px}
