@@ -211,6 +211,8 @@ label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;display:block
 .ledger-row .serial{font-size:11px;letter-spacing:.1em;color:var(--gray)}
 .ledger-row .holder{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .ledger-row .mark{font-size:10px;text-transform:uppercase;letter-spacing:.14em;text-align:right}
+.ledger-row.open .holder{color:var(--gray);font-weight:400;font-style:italic;text-transform:none;letter-spacing:.06em}
+.ledger-row.open .mark{color:var(--gray)}
 
 /* cart */
 .cart-page{padding:80px 0 100px;max-width:680px;margin:0 auto}
