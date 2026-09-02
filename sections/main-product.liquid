@@ -1,5 +1,7 @@
 {% assign is_verified = false %}
-{% if product.tags contains 'verified-tier' %}{% assign is_verified = true %}{% endif %}
+{% assign tag_string = product.tags | join: ',' | downcase %}
+{% assign title_down = product.title | downcase %}
+{% if tag_string contains 'verified' or title_down contains 'million' %}{% assign is_verified = true %}{% endif %}
 <div class="wrap">
   <div class="product-page">
     <div class="product-media" id="gallery-{{ section.id }}">

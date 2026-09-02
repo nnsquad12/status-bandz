@@ -1,5 +1,7 @@
 {% assign is_verified = false %}
-{% if product.tags contains 'verified-tier' %}{% assign is_verified = true %}{% endif %}
+{% assign tag_string = product.tags | join: ',' | downcase %}
+{% assign title_down = product.title | downcase %}
+{% if tag_string contains 'verified' or title_down contains 'million' %}{% assign is_verified = true %}{% endif %}
 <a class="card {% if is_verified %}tier-verified{% endif %}" href="{{ product.url }}">
   <div class="thumb">
     {% if product.featured_image %}
