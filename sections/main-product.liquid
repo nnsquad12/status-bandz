@@ -2,9 +2,32 @@
 {% if product.tags contains 'verified-tier' %}{% assign is_verified = true %}{% endif %}
 <div class="wrap">
   <div class="product-page">
-    <div class="product-media">
-      {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="1200" height="1200">
+    <div class="product-media" id="gallery-{{ section.id }}">
+      {% if product.media.size > 0 %}
+        <div class="gallery-main">
+          {% for media in product.media %}
+            <img
+              class="gallery-img{% if forloop.first %} active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              src="{{ media.preview_image | image_url: width: 1200 }}"
+              alt="{{ media.preview_image.alt | default: product.title | escape }}"
+              width="1200" height="1200"
+              {% unless forloop.first %}loading="lazy"{% endunless %}>
+          {% endfor %}
+          {% if product.media.size > 1 %}
+            <button type="button" class="gallery-nav prev" aria-label="Previous image">&#8249;</button>
+            <button type="button" class="gallery-nav next" aria-label="Next image">&#8250;</button>
+          {% endif %}
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="gallery-thumbs">
+            {% for media in product.media %}
+              <button type="button" class="gallery-thumb{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}">
+                <img src="{{ media.preview_image | image_url: width: 200 }}" alt="" width="200" height="200" loading="lazy">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
       {% else %}
         <div style="aspect-ratio:1;display:flex;align-items:center;justify-content:center">
           <div class="band" style="max-width:80%"><span class="plate">{{ product.title | truncate: 12, '' }}</span></div>
@@ -43,6 +66,26 @@
     </div>
   </div>
 </div>
+<script>
+  (function () {
+    var root = document.getElementById('gallery-{{ section.id }}');
+    if (!root) return;
+    var imgs = root.querySelectorAll('.gallery-img');
+    var thumbs = root.querySelectorAll('.gallery-thumb');
+    if (imgs.length < 2) return;
+    var current = 0;
+    function show(i) {
+      current = (i + imgs.length) % imgs.length;
+      imgs.forEach(function (img, n) { img.classList.toggle('active', n === current); });
+      thumbs.forEach(function (t, n) { t.classList.toggle('active', n === current); });
+    }
+    thumbs.forEach(function (t) {
+      t.addEventListener('click', function () { show(parseInt(t.dataset.index, 10)); });
+    });
+    root.querySelector('.gallery-nav.prev').addEventListener('click', function () { show(current - 1); });
+    root.querySelector('.gallery-nav.next').addEventListener('click', function () { show(current + 1); });
+  })();
+</script>
 {% schema %}
 { "name": "Product", "settings": [] }
 {% endschema %}
