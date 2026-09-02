@@ -16,6 +16,18 @@
     },
     "verified_registry_rtR4TY": {
       "type": "verified-registry",
+      "blocks": {
+        "entry_MV8tLT": {
+          "type": "entry",
+          "settings": {
+            "serial": "SB-001",
+            "holder": "noah neumann"
+          }
+        }
+      },
+      "block_order": [
+        "entry_MV8tLT"
+      ],
       "name": "Verified registry",
       "settings": {
         "title": "Verified holders",
