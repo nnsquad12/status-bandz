@@ -1,12 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "drop_label": "Drop 001",
+        "drop_status": "Live now",
+        "headline": "Say it without saying it",
+        "cta_text": "Shop the drop",
+        "cta_link": "",
+        "bg_image": "shopify://shop_images/CF6B7848-B628-4711-9362-7161BAC4A63A.png",
+        "overlay": 20,
+        "text_style": "light"
+      }
     },
     "grid": {
       "type": "drop-grid",
-      "settings": {}
+      "settings": {
+        "title": "The drop",
+        "note": "Limited run — no restocks",
+        "collection": "",
+        "limit": 6
+      }
     },
     "how": {
       "type": "how-it-works",
@@ -38,11 +61,17 @@
         "c2",
         "c3"
       ],
-      "settings": {}
+      "settings": {
+        "title": "How it works"
+      }
     },
     "signup": {
       "type": "signup",
-      "settings": {}
+      "settings": {
+        "title": "The list gets in first",
+        "subtitle": "Early access — 24 hours before public",
+        "button": "Get on the list"
+      }
     }
   },
   "order": [
