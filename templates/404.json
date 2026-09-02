@@ -1,1 +1,32 @@
-{ "sections": { "main": { "type": "main-404", "settings": {} } }, "order": ["main"] }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "settings": {}
+    },
+    "verified_registry_rtR4TY": {
+      "type": "verified-registry",
+      "name": "Verified registry",
+      "settings": {
+        "title": "Verified holders",
+        "intro": "Every Millionaire band carries an engraved serial. Every serial on this page passed verification before it shipped. If the serial isn't here, the band isn't real.",
+        "total_slots": 25,
+        "open_text": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "verified_registry_rtR4TY"
+  ]
+}
